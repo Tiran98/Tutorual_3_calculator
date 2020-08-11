@@ -4,7 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -97,6 +100,16 @@ public class SecondActivity extends AppCompatActivity {
     public void divideValues(){
         int value1 = Integer.parseInt(number1.getText().toString());
         int value2 = Integer.parseInt(number2.getText().toString());
+        if(value2 == 0){
+            LayoutInflater li = getLayoutInflater();
+            View layout = li.inflate(R.layout.custom_layout_1,(ViewGroup)findViewById(R.id.custom_toast_layout));
+
+            Toast toast = new Toast(getApplicationContext());
+            toast.setDuration(Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.CENTER,0,0);
+            toast.setView(layout);
+            toast.show();
+        }
         float ansValue = (int)value1 / (float)value2;
         answer.setText(String.valueOf(ansValue));
         sign.setText("/");
